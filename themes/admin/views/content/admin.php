@@ -87,11 +87,17 @@ $('.search-form form').submit(function(){
                         'htmlOptions' => array('style' => "text-align:center;"),
                     ),
                     array(
-                        'name' => 'ordering',
-                        'type' => 'raw',
-                        'value' => '$data->ordering',
-                        'htmlOptions' => array('style' => "text-align:center; width:50px;", 'title' => 'Ordering'),
+                        'name' => 'editorial_choice',
+                        'value' => '$data->editorial_choice?Yii::t(\'app\',\'Yes\'):Yii::t(\'app\', \'No\')',
+                        'filter' => array('' => Yii::t('app', 'All'), '0' => Yii::t('app', 'No'), '1' => Yii::t('app', 'Yes')),
+                        'htmlOptions' => array('style' => "text-align:center;"),
                     ),
+//                    array(
+//                        'name' => 'ordering',
+//                        'type' => 'raw',
+//                        'value' => '$data->ordering',
+//                        'htmlOptions' => array('style' => "text-align:center; width:50px;", 'title' => 'Ordering'),
+//                    ),
                     array(
                         'name' => 'hits',
                         'type' => 'raw',

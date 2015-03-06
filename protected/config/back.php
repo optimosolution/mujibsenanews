@@ -42,18 +42,18 @@ return CMap::mergeArray(
                 'yiiwheels' => array(
                     'class' => 'yiiwheels.YiiWheels',
                 ),
-            // uncomment the following to enable URLs in path-format
-//                'urlManager' => array(
-//                    'urlFormat' => 'path',
-//                    'showScriptName' => true,
-//                    'urlSuffix' => '.html',
-//                    'rules' => array(
-//                        '<action>' => 'site/<action>',
-//                        '<controller:\w+>/<id:\d+>' => '<controller>/view',
-//                        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-//                        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-//                    ),
-//                ),
+                // uncomment the following to enable URLs in path-format
+                'urlManager' => array(
+                    'urlFormat' => 'path',
+                    'showScriptName' => true,
+                    'urlSuffix' => '.html',
+                    'rules' => array(
+                        '<action>' => 'site/<action>',
+                        '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                        '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                        '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                    ),
+                ),
             ),
             'params' => array(
                 // this is used in contact page

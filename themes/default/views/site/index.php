@@ -2,7 +2,11 @@
 $this->pageTitle = Yii::app()->name;
 ?>
 <div class="row well">
-    <h4><strong>FEATURED</strong> NEWS</h4>
+    <h3><?php echo Title::get_title(5); ?></h3>
+    <?php Content::get_editorial_choice(); ?>
+</div>
+<div class="row well">
+    <h3><?php echo Title::get_title(8); ?></h3>
     <?php
     $this->widget('zii.widgets.CListView', array(
         'dataProvider' => $dataProvider_featured,

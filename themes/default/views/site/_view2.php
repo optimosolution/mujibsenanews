@@ -12,7 +12,8 @@
     </div>
     <div class="col-md-9 col-sm-9">
         <h3 class="article-title"><?php echo CHtml::link($data->title, array('news/view', 'id' => $data->id), array()); ?></h3>
-        <span class="text-muted"><?php echo UserAdmin::get_date_time($data->created); ?></span>
-        <?php //echo $this->text_cut(htmlspecialchars_decode(CHtml::encode($data->introtext)), 500); ?>
+        <span class="text-info"><?php echo UserAdmin::get_date_time($data->created); ?></span>        
+        <?php //echo $this->text_cut(strip_tags(CHtml::encode($data->introtext)), 500); ?>
+        <span class="clearfix"><?php echo $this->text_cut($this->html2txt($data->introtext), 500); ?></span>
     </div>
 </div>

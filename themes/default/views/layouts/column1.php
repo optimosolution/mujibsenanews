@@ -45,7 +45,7 @@
                     <?php
                     $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
                         'likebox' => array(
-                            'url' => 'https://facebook.com/yiiexperts',
+                            'url' => 'https://www.facebook.com/mujibsenanews',
                             'header' => 'true',
                             'width' => '260',
                             'height' => '400',

@@ -58,7 +58,7 @@ class SiteController extends Controller {
         //Recent news
         $criteria = new CDbCriteria;
         $criteria->addCondition('state=1 AND catid !=1');
-        $criteria->order = 'created DESC, id DESC';
+        $criteria->order = 'ordering DESC, created DESC';
         $dataProvider = new CActiveDataProvider('Content', array(
             'criteria' => $criteria,
             'pagination' => array(

@@ -51,7 +51,7 @@ class Content extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('title, catid, introtext, state', 'required'),
-            array('state, ordering, featured', 'numerical', 'integerOnly' => true),
+            array('state, ordering, featured, editorial_choice', 'numerical', 'integerOnly' => true),
             array('title, alias', 'length', 'max' => 255),
             array('catid, created_by, modified_by, hits', 'length', 'max' => 10),
             array('created, modified, publish_up, publish_down, metakey, metadesc', 'safe'),
@@ -59,7 +59,7 @@ class Content extends CActiveRecord {
             array('file', 'file', 'types' => 'jpg, jpeg, gif, png', 'allowEmpty' => true, 'minSize' => 2, 'maxSize' => 1024 * 1024 * 2, 'tooLarge' => 'The file was larger than 2MB. Please upload a smaller file.', 'wrongType' => 'File format was not supported.', 'tooSmall' => 'File size was too small or empty.'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, title, alias, introtext, fulltext, state, catid, created, created_by, modified, modified_by, publish_up, publish_down, ordering, metakey, metadesc, hits, featured', 'safe', 'on' => 'search'),
+            array('id, title, alias, introtext, fulltext, state, catid, created, created_by, modified, modified_by, publish_up, publish_down, ordering, metakey, metadesc, hits, featured, editorial_choice', 'safe', 'on' => 'search'),
         );
     }
 
@@ -97,6 +97,7 @@ class Content extends CActiveRecord {
             'hits' => 'Hits',
             'featured' => 'Featured',
             'images' => 'Images',
+            'editorial_choice' => 'Editorial Choice',
         );
     }
 
@@ -128,6 +129,7 @@ class Content extends CActiveRecord {
         $criteria->compare('metadesc', $this->metadesc, true);
         $criteria->compare('hits', $this->hits, true);
         $criteria->compare('featured', $this->featured);
+        $criteria->compare('editorial_choice', $this->editorial_choice);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -226,7 +228,7 @@ class Content extends CActiveRecord {
             return CHtml::image(Yii::app()->baseUrl . '/uploads/images/default.png', 'Picture', array('alt' => $value->title, 'class' => 'img-responsive', 'title' => $value->title, 'style' => ''));
         }
     }
-    
+
     public static function get_picture_fixed($id) {
         $value = Content::model()->findByAttributes(array('id' => $id));
         $filePath = Yii::app()->basePath . '/../uploads/images/' . $value->images;
@@ -297,6 +299,30 @@ class Content extends CActiveRecord {
             }
             $i++;
         }
+    }
+
+    public static function get_editorial_choice() {
+        $array = Content::model()->findAll(
+                array(
+                    'select' => 'id,title,catid,introtext,created',
+                    'condition' => 'state=1 AND editorial_choice=1',
+                    'order' => 'ordering DESC, created DESC',
+                    'limit' => '6',
+        ));
+        $i = 1;
+        echo '<div class="row">';
+        foreach ($array as $key => $value) {
+            if ($i == 1) {
+                echo '<div class="col-md-6">';
+                echo Content::get_picture_responsive($value['id']);
+                echo '<h4>' . CHtml::link($value['title'], array('news/view', 'id' => $value['id']), array()) . '</h4>';
+                echo '</div>';
+            } else {
+                echo '<div>' . CHtml::link('<i class="fa fa-sign-out"></i> ' . $value['title'], array('news/view', 'id' => $value['id']), array('style' => 'font-size:16px;')) . '<br /><span style="font-size:11px;">' . UserAdmin::get_date_time($value['created']) . '</span></div>';
+            }
+            $i++;
+        }
+        echo '</div>';
     }
 
 }

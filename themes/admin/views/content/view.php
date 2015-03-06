@@ -94,6 +94,10 @@ $this->breadcrumbs = array(
                         'name' => 'featured',
                         'value' => $model->featured ? "Yes" : "No",
                     ),
+                    array(
+                        'name' => 'editorial_choice',
+                        'value' => $model->editorial_choice ? "Yes" : "No",
+                    ),
                 ),
             ));
             ?>
