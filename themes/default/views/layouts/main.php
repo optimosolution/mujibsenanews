@@ -87,6 +87,7 @@
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(7), array('news/index', 'id' => 7), array('class' => '')) . '</li>'; ?>
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(8), array('news/index', 'id' => 8), array('class' => '')) . '</li>'; ?>
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(9), array('news/index', 'id' => 9), array('class' => '')) . '</li>'; ?>
+                                    <?php echo '<li class="mega-menu">' . CHtml::link(Content::get_title(1), array('content/view', 'id' => 1), array('class' => '')) . '</li>'; ?>                               
                                 </ul>
                             </nav>
                         </div>
@@ -126,8 +127,7 @@
                                 <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ' . ContentCategory::getCategoryName(11), array('news/index', 'id' => 11), array()); ?></li>                                
                                 <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ' . Title::get_title(6), array('youtube/index'), array()); ?></li>                                
                                 <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> WebLink', array('weblink/index'), array()); ?></li>                                
-                                <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ' . Title::get_title(7), array('gallery/index', 'id' => 3), array()); ?></li>                                
-                                <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ' . Content::get_title(1), array('content/view', 'id' => 1), array()); ?></li>                                
+                                <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ' . Title::get_title(7), array('gallery/index', 'id' => 3), array()); ?></li>                                                                
                             </ul>
                         </div>
                         <!-- /col #2 -->

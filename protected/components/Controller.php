@@ -122,13 +122,14 @@ class Controller extends CController {
         $array = Yii::app()->db->createCommand()
                 ->select('*')
                 ->from('{{banner}}')
-                ->where('published=1 AND catid=' . $catid . ' AND publish_up <= NOW()  AND publish_down >= NOW()')
-                ->order('created_on DESC')
+                //->where('published=1 AND catid=' . $catid . ' AND publish_up <= NOW()  AND publish_down >= NOW()')
+                ->where('published=1 AND catid=' . $catid)
+                ->order('ordering ASC, created_on DESC')
                 ->queryAll();
 
         foreach ($array as $key => $values) {
             echo '<div style="margin-bottom:5px;">';
-            $banner = CHtml::image(Yii::app()->baseUrl . '/uploads/banners/' . $values['banner'], $values['name'], array('title' => $values['name'], 'class' => 'img-responsive img-thumbnail'));
+            $banner = CHtml::image(Yii::app()->baseUrl . '/uploads/banners/' . $values['banner'], $values['name'], array('title' => $values['name'], 'class' => 'img-responsive thumbnail'));
             echo CHtml::link($banner, $values['clickurl'], array('target' => '_blank'));
             echo '</div>';
         }

@@ -1,6 +1,9 @@
 <?php
 $this->pageTitle = Yii::app()->name;
 ?>
+<div class="row">
+<?php $this->get_advertisement(4); ?>
+</div>
 <div class="row well">
     <h3><?php echo Title::get_title(5); ?></h3>
     <?php Content::get_editorial_choice(); ?>
@@ -43,10 +46,10 @@ $this->pageTitle = Yii::app()->name;
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo CHtml::link(ContentCategory::getCategoryName(19), array('news/index', 'id' => 19), array('class' => '', 'style' => 'font-size:20px;')); ?></h3>
+                <h3 class="panel-title"><?php echo CHtml::link(ContentCategory::getCategoryName(15), array('news/index', 'id' => 15), array('class' => '', 'style' => 'font-size:20px;')); ?></h3>
             </div>
             <div class="panel-body">
-                <?php Content::get_news_home(19); ?>
+                <?php Content::get_news_home(15); ?>
             </div>
         </div>
     </div>
@@ -107,10 +110,10 @@ $this->pageTitle = Yii::app()->name;
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo CHtml::link(ContentCategory::getCategoryName(15), array('news/index', 'id' => 15), array('class' => '', 'style' => 'font-size:20px;')); ?></h3>
+                <h3 class="panel-title"><?php echo CHtml::link(ContentCategory::getCategoryName(19), array('news/index', 'id' => 19), array('class' => '', 'style' => 'font-size:20px;')); ?></h3>
             </div>
             <div class="panel-body">
-                <?php Content::get_news_home(15); ?>
+                <?php Content::get_news_home(19); ?>
             </div>
         </div>
     </div>
