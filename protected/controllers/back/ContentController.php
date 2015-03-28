@@ -39,11 +39,11 @@ class ContentController extends BackEndController {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete', 'upload', 'listimages'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'upload', 'listimages', 'image', 'remove'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('create', 'update', 'admin', 'delete', 'upload', 'listimages'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'upload', 'listimages', 'image', 'remove'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -89,9 +89,15 @@ class ContentController extends BackEndController {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
+        //Display more picture grid
+        $modelmore = new ContentImage('search');
+        $modelmore->unsetAttributes();  // clear any default values
+        if (isset($_GET['ContentImage']))
+            $modelmore->attributes = $_GET['ContentImage'];
 
         $this->render('view', array(
             'model' => $this->loadModel($id),
+            'modelmore' => $modelmore,
         ));
     }
 
@@ -101,6 +107,7 @@ class ContentController extends BackEndController {
      */
     public function actionCreate() {
         $model = new Content;
+        $model_images = new ContentImage;
         $path = Yii::app()->basePath . '/../uploads/images';
         if (!is_dir($path)) {
             mkdir($path);
@@ -108,6 +115,8 @@ class ContentController extends BackEndController {
 
         if (isset($_POST['Content'])) {
             $model->attributes = $_POST['Content'];
+            //$images->attributes = $_POST['ContentImage'];
+            $images = CUploadedFile::getInstancesByName('image');
             if ($model->validate()) {
                 $model->created = new CDbExpression('NOW()');
                 $model->created_by = Yii::app()->user->id;
@@ -129,14 +138,21 @@ class ContentController extends BackEndController {
                     $model->images = time() . '_' . str_replace(' ', '_', strtolower($model->images));
                 }
                 if ($model->save()) {
-                    Yii::app()->user->setFlash('success', 'Content has been created successfully');
-                    $this->redirect(array('view', 'id' => $model->id));
+                    Yii::app()->user->setFlash('success', 'Data was saved successfully');
+                    if (isset($_POST['savennew'])) {
+                        $this->redirect(array('create'));
+                    } elseif ($_POST['saveedit']) {
+                        $this->redirect(array('update', 'id' => $model->id));
+                    } else {
+                        $this->redirect(array('admin'));
+                    }
                 }
             }
         }
 
         $this->render('create', array(
             'model' => $model,
+            'model_images' => $model_images,
         ));
     }
 
@@ -147,11 +163,17 @@ class ContentController extends BackEndController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $model_images = new ContentImage;
         $previuosFileName = $model->images;
         $path = Yii::app()->basePath . '/../uploads/images';
         if (!is_dir($path)) {
             mkdir($path);
         }
+        //Display more picture grid
+        $modelmore = new ContentImage('search');
+        $modelmore->unsetAttributes();  // clear any default values
+        if (isset($_GET['ContentImage']))
+            $modelmore->attributes = $_GET['ContentImage'];
 
         if (isset($_POST['Content'])) {
             $model->attributes = $_POST['Content'];
@@ -183,14 +205,53 @@ class ContentController extends BackEndController {
                 }
                 if ($model->save()) {
                     Yii::app()->user->setFlash('success', 'Content has been updated successfully');
-                    $this->redirect(array('view', 'id' => $model->id));
+                    if (isset($_POST['savennew'])) {
+                        $this->redirect(array('create'));
+                    } elseif (isset($_POST['saveedit'])) {
+                        $this->redirect(array('update', 'id' => $model->id));
+                    } else {
+                        $this->redirect(array('admin'));
+                    }
                 }
             }
         }
 
         $this->render('update', array(
             'model' => $model,
+            'model_images' => $model_images,
+            'modelmore' => $modelmore,
         ));
+    }
+
+    public function actionImage() {
+        $model = new ContentImage;
+        $path = Yii::app()->basePath . '/../uploads/images';
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+        if (isset($_POST['ContentImage'])) {
+            $model->attributes = $_POST['ContentImage'];
+            $model->created = new CDbExpression('NOW()');
+            if ($model->validate()) {
+                //Picture upload script
+                if (@!empty($_FILES['ContentImage']['name']['content_image'])) {
+                    $model->content_image = $_POST['ContentImage']['content_image'];
+
+                    if ($model->validate(array('ContentImage'))) {
+                        $model->content_image = CUploadedFile::getInstance($model, 'content_image');
+                    } else {
+                        $model->content_image = null;
+                    }
+                    $model->content_image->saveAs($path . '/' . time() . '_' . str_replace(' ', '_', strtolower($model->content_image)));
+                    $model->content_image = time() . '_' . str_replace(' ', '_', strtolower($model->content_image));
+                }
+                if ($model->save()) {
+                    echo $model->id;
+                } else {
+                    echo "false";
+                }
+            }
+        }
     }
 
     /**
@@ -203,6 +264,19 @@ class ContentController extends BackEndController {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
             $this->loadModel($id)->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        } else
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
+    public function actionRemove($id) {
+
+        if (Yii::app()->request->isPostRequest) {
+            // we only allow deletion via POST request
+            $this->loadModelImage($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
@@ -244,6 +318,13 @@ class ContentController extends BackEndController {
      */
     public function loadModel($id) {
         $model = Content::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+    }
+
+    public function loadModelImage($id) {
+        $model = ContentImage::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

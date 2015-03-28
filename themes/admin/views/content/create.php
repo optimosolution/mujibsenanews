@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
     </div><!--/.widget-header -->
     <div class="widget-body">
         <div class="widget-main">
-            <?php $this->renderPartial('_form', array('model' => $model)); ?>
+            <?php $this->renderPartial('_form', array('model' => $model, 'model_images' => $model_images,)); ?>
         </div>
     </div><!--/.widget-body -->
 </div><!--/.widget-box -->

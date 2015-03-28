@@ -76,6 +76,18 @@ Yii::app()->clientScript->registerScript('search', "
 </div>
 <div class="form-actions">
     <?php echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
+    <?php
+    echo TbHtml::submitButton('Save & New', array(
+        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+        'name' => 'savennew'
+    ));
+    ?>
+    <?php
+    echo TbHtml::submitButton('Save & Edit', array(
+        'color' => TbHtml::BUTTON_COLOR_PRIMARY,
+        'name' => 'saveedit'
+    ));
+    ?>
     <?php echo TbHtml::resetButton('Reset', array('color' => TbHtml::BUTTON_COLOR_INFO)); ?>
 </div>
 <?php $this->endWidget(); ?>

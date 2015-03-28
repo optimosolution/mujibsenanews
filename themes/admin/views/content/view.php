@@ -101,6 +101,30 @@ $this->breadcrumbs = array(
                 ),
             ));
             ?>
+            <?php
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'content-grid',
+                'dataProvider' => $modelmore->search($model->id),
+                'columns' => array(
+                    array(
+                        'name' => 'id',
+                        'type' => 'raw',
+                        'value' => '$data->id',
+                        'htmlOptions' => array('style' => "text-align:center;width:100px;", 'title' => 'ID'),
+                    ),
+                    array(
+                        'name' => 'content_image',
+                        'type' => 'html',
+                        'value' => 'CHtml::image(Yii::app()->baseUrl . "/uploads/images/" . $data->content_image, "Picture", array("style" => "width:50px;"))',
+                    ),
+                    array(
+                        'header' => 'Actions',
+                        'template' => '{delete}',
+                        'class' => 'bootstrap.widgets.TbButtonColumn',
+                    ),
+                ),
+            ));
+            ?>
         </div>
     </div><!--/.widget-body -->
 </div><!--/.widget-box -->
