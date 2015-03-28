@@ -68,7 +68,7 @@ $this->breadcrumbs = array(
                     array(
                         'header' => 'Path',
                         'type' => 'html',
-                        'value' => 'Yii::app()->request->getUserHostAddress()."/uploads/images/" . $data->content_image',
+                        'value' => 'Yii::app()->getBaseUrl(true)."/uploads/images/" . $data->content_image',
                     ),
                     array(
                         'header' => 'Actions',
