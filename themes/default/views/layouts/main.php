@@ -48,21 +48,14 @@
                 <!-- Top Bar -->
                 <header id="topBar">
                     <div class="container">
-                        <div class="pull-right fsize13 margin-top10 hide_mobile">
-                            <!-- mail , phone -->
-                            <a href="mailto:info@ircbd.org">info@mujibsenanews.com</a> &bull; +880 0000 000000
-                            <div class="block text-right"><!-- social -->
-                                <a href="#" class="social fa fa-facebook"></a>
-                                <a href="#" class="social fa fa-twitter"></a>
-                                <a href="#" class="social fa fa-google-plus"></a>
-                                <a href="#" class="social fa fa-linkedin"></a>
-                                <a href="#" class="social fa fa-pinterest"></a>
-                            </div><!-- /social -->
-                        </div>
+                        <?php
+                        $logo = CHtml::image(Yii::app()->theme->baseUrl . '/assets/images/banner.jpg', 'Logo', array('alt' => Yii::app()->name, 'class' => 'img-responsive', 'title' => Yii::app()->name, 'style' => ''));
+                        echo CHtml::link($logo, array('site/index'), array('class' => 'logo'));
+                        ?>
                         <!-- Logo -->
                         <?php
-                        $logo = CHtml::image(Yii::app()->theme->baseUrl . '/assets/images/logo.png', 'Logo', array('alt' => Yii::app()->name, 'class' => '', 'title' => Yii::app()->name, 'style' => 'height:80px;'));
-                        echo CHtml::link($logo, array('site/index'), array('class' => 'logo'));
+//                        $logo = CHtml::image(Yii::app()->theme->baseUrl . '/assets/images/logo.png', 'Logo', array('alt' => Yii::app()->name, 'class' => '', 'title' => Yii::app()->name, 'style' => 'height:80px;'));
+//                        echo CHtml::link($logo, array('site/index'), array('class' => 'logo'));
                         ?>
                     </div><!-- /.container -->
                 </header>
