@@ -10,7 +10,10 @@
             <!-- /BLOG ARTICLE LIST -->
             <!-- BLOG SIDEBAR -->
             <div class="col-md-3 col-sm-3">                
-                <!-- search -->
+                <!-- Video -->
+                <div class="widget">
+                    <iframe width="265" height="215" src="//www.youtube.com/embed/<?php echo $this->get_youtube_video(); ?>" frameborder="0" allowfullscreen></iframe>                
+                </div>
                 <!-- RECENT,POPULAR,COMMENTS -->
                 <?php /*
                   <div class="widget">

@@ -134,5 +134,15 @@ class Controller extends CController {
             echo '</div>';
         }
     }
+	
+	public function get_youtube_video() {
+        $value = Yii::app()->db->createCommand()
+                ->select('youtube_id')
+                ->from('{{youtube}}')
+                ->limit('1')
+                ->order('created_on DESC')
+                ->queryScalar();
+        return $value;
+    }
 
 }
