@@ -12,7 +12,7 @@ return CMap::mergeArray(
                 'clientScript' => array(
                     'packages' => array(
                         'jquery' => array(
-                            'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/',
+                            'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/1.8.2/',
                             'js' => array('jquery.min.js'),
                             'coreScriptPosition' => CClientScript::POS_HEAD,
                         ),

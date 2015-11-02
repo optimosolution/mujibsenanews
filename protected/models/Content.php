@@ -228,6 +228,16 @@ class Content extends CActiveRecord {
             return CHtml::image(Yii::app()->baseUrl . '/uploads/images/default.png', 'Picture', array('alt' => $value->title, 'class' => 'img-responsive', 'title' => $value->title, 'style' => ''));
         }
     }
+    
+    public static function get_picture_responsive2($id) {
+        $value = Content::model()->findByAttributes(array('id' => $id));
+        $filePath = Yii::app()->basePath . '/../uploads/images/' . $value->images;
+        if ((is_file($filePath)) && (file_exists($filePath))) {
+            return CHtml::image(Yii::app()->baseUrl . '/uploads/images/' . $value->images, 'Picture', array('alt' => $value->title, 'class' => 'img-responsive img-thumbnail', 'title' => $value->title, 'style' => 'height:50px;'));
+        } else {
+            return CHtml::image(Yii::app()->baseUrl . '/uploads/images/default.png', 'Picture', array('alt' => $value->title, 'class' => 'img-responsive', 'title' => $value->title, 'style' => 'width:100px;'));
+        }
+    }
 
     public static function get_picture_fixed($id) {
         $value = Content::model()->findByAttributes(array('id' => $id));
@@ -319,6 +329,44 @@ class Content extends CActiveRecord {
                 echo '</div>';
             } else {
                 echo '<div>' . CHtml::link('<i class="fa fa-sign-out"></i> ' . $value['title'], array('news/view', 'id' => $value['id']), array('style' => 'font-size:16px;')) . '<br /><span style="font-size:11px;">' . UserAdmin::get_date_time($value['created']) . '</span></div>';
+            }
+            $i++;
+        }
+        echo '</div>';
+    }
+
+    public static function get_editorial_choice2() {
+        $array = Content::model()->findAll(
+                array(
+                    'select' => 'id,title,catid,introtext,created',
+                    'condition' => 'state=1 AND editorial_choice=1',
+                    'order' => 'ordering DESC, created DESC',
+                    'limit' => '5',
+        ));
+        $i = 1;
+        echo '<div id="featured" >';
+        echo '<ul class="ui-tabs-nav">';
+        foreach ($array as $key => $value) {
+            echo '<li class="ui-tabs-nav-item" id="nav-fragment-1"><a href="#fragment-' . $value['id'] . '">' . Content::get_picture_responsive2($value['id']) . '<span style="font-size:16px;">' . $value['title'] . '</span></a></li>';
+        }
+        echo '</ul>';
+        foreach ($array as $key => $value) {
+            if ($i == 1) {
+                echo '<div id="fragment-' . $value['id'] . '" class="ui-tabs-panel" style="">';
+                echo Content::get_picture_responsive($value['id']);
+                echo '<div class="info" >';
+                echo '<h2>' . CHtml::link($value['title'], array('news/view', 'id' => $value['id']), array()) . '</h2>';
+                //echo '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut diam....<a href="#" >read more</a></p>';
+                echo '</div>';
+                echo '</div>';
+            } else {
+                echo '<div id="fragment-' . $value['id'] . '" class="ui-tabs-panel ui-tabs-hide" style="">';
+                echo Content::get_picture_responsive($value['id']);
+                echo '<div class="info" >';
+                echo '<h2>' . CHtml::link($value['title'], array('news/view', 'id' => $value['id']), array()) . '</h2>';
+                //echo '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut diam....<a href="#" >read more</a></p>';
+                echo '</div>';
+                echo '</div>';
             }
             $i++;
         }
