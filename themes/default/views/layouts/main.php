@@ -99,11 +99,11 @@
                         <div class="logo_footer dark col-md-3">
                             <h4>Contact <strong>Us</strong></h4>
                             <p class="block">
-                                4th Street, Suite 88<br />
-                                New York NY 10887<br />
-                                Email: info@mujibsenanews.com<br />
-                                Phone: +40 (0) 111 1234 567<br />
-                                Fax: +40 (0) 111 1234 568<br />
+                                <i class="fa fa-user"></i> Md. Ali Hossain<br />
+                                702 Ives way<br />
+                                Lilburn Georgia 30047, USA<br />
+                                <i class="fa fa-envelope"></i> hossain1957@gmail.com mujibsenanews@gmail.com</span><br />
+                                <i class="fa fa-mobile-phone"></i> 678-887-8752, 404-216-9227<br />
                             </p>
                             <p class="block"><!-- social -->
                                 <a href="#" class="social fa fa-facebook"></a>
