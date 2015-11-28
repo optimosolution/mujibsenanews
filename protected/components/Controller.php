@@ -134,8 +134,8 @@ class Controller extends CController {
             echo '</div>';
         }
     }
-	
-	public function get_youtube_video() {
+
+    public function get_youtube_video() {
         $value = Yii::app()->db->createCommand()
                 ->select('youtube_id')
                 ->from('{{youtube}}')
@@ -143,6 +143,21 @@ class Controller extends CController {
                 ->order('created_on DESC')
                 ->queryScalar();
         return $value;
+    }
+
+    public function get_home_banner($catid) {
+        $array = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('{{banner}}')
+                ->where('published=1 AND catid=' . (int) $catid)
+                ->order('ordering ASC')
+                ->limit(1)
+                ->queryAll();
+
+        foreach ($array as $key => $values) {
+            $banner = CHtml::image(Yii::app()->baseUrl . '/uploads/banners/' . $values['banner'], $values['name'], array('class' => 'img-post img-responsive', 'title' => $values['name']));
+            echo CHtml::link($banner, $values['clickurl'], array('target' => '_blank'));
+        }
     }
 
 }

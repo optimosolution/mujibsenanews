@@ -50,8 +50,9 @@
                 <header id="topBar">
                     <div class="container">
                         <?php
-                        $logo = CHtml::image(Yii::app()->theme->baseUrl . '/assets/images/banner.jpg', 'Logo', array('alt' => Yii::app()->name, 'class' => 'img-responsive', 'title' => Yii::app()->name, 'style' => ''));
-                        echo CHtml::link($logo, array('site/index'), array('class' => 'logo'));
+                        //$logo = CHtml::image(Yii::app()->theme->baseUrl . '/images/banner.jpg', 'Logo', array('alt' => Yii::app()->name, 'class' => 'img-responsive', 'title' => Yii::app()->name, 'style' => ''));
+                        //echo CHtml::link($logo, array('site/index'), array('class' => 'logo'));
+                        $this->get_home_banner(5);
                         ?>
                         <!-- Logo -->
                         <?php
