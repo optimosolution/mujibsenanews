@@ -117,7 +117,7 @@ class Content extends CActiveRecord {
         $criteria->compare('introtext', $this->introtext, true);
         $criteria->compare('fulltext', $this->fulltext, true);
         $criteria->compare('state', $this->state);
-        $criteria->compare('catid', $this->catid, true);
+        $criteria->compare('catid', $this->catid);
         $criteria->compare('created', $this->created, true);
         $criteria->compare('created_by', $this->created_by, true);
         $criteria->compare('modified', $this->modified, true);

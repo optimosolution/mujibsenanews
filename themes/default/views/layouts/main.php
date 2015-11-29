@@ -115,7 +115,7 @@
                         </div>
                         <!-- /col #1 -->
                         <!-- col #2 -->
-                        <div class="spaced col-md-3 col-sm-4">
+                        <div class="spaced col-md-2 col-sm-3">
                             <h4>Footer <strong>Menu</strong></h4>
                             <ul class="list-unstyled">
                                 <li><?php echo CHtml::link('<i class="fa fa-sign-out"></i> ENGLISH', array('news/index', 'id' => 10), array()); ?></li>                                
@@ -128,33 +128,15 @@
                         <!-- /col #2 -->
                         <!-- col #3 -->
                         <div class="spaced col-md-3 col-sm-4">
-                            <h4>Recent <strong>Tweets</strong></h4>
-                            <ul class="list-unstyled fsize13">
-                                <li>
-                                    <i class="fa fa-twitter"></i> <a href="#">@John Doe</a> Pilsum dolor lorem sit consectetur adipiscing orem sequat <small class="ago">8 mins ago</small>
-                                </li>
-                                <li>
-                                    <i class="fa fa-twitter"></i> <a href="#">@John Doe</a> Remonde sequat ipsum dolor lorem sit consectetur adipiscing  <small class="ago">8 mins ago</small>
-                                </li>
-                                <li>
-                                    <i class="fa fa-twitter"></i> <a href="#">@John Doe</a> Imperdiet condimentum diam dolor lorem sit consectetur adipiscing <small class="ago">8 mins ago</small>
-                                </li>
-                            </ul>
+                            <h4><?php echo Content::get_title(3989); ?></h4>
+                            <p><?php echo Content::get_introtext(3989); ?></p>
                         </div>
                         <!-- /col #3 -->
 
                         <!-- col #4 -->
-                        <div class="spaced col-md-3 col-sm-4">
-                            <h4>Subscribe <strong>Us</strong></h4>
-                            <p>Exclusive reporting, including insider sports coverage of Colorado's teams, investigative reporting, featured content, local coverage and access to premium stories.</p>
-
-                            <h4><small><strong>Subscribe to our Newsletter</strong></small></h4>
-                            <form id="newsletterSubscribe" method="post" action="php/newsletter.php" class="input-group">
-                                <input required type="email" class="form-control" name="newsletter_email" id="newsletter_email" value="" placeholder="E-mail Address">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary">SUBMIT</button>
-                                </span>
-                            </form>
+                        <div class="spaced col-md-4 col-sm-5">
+                            <h4><?php echo Content::get_title(3990); ?></h4>
+                            <p><?php echo Content::get_introtext(3990); ?></p>
                         </div>
                         <!-- /col #4 -->
                     </div>
