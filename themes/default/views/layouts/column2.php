@@ -10,7 +10,27 @@
             <!-- /BLOG ARTICLE LIST -->
             <!-- BLOG SIDEBAR -->
             <div class="col-md-3 col-sm-3">                
-                <!-- search -->
+                <!-- Advertisement -->
+                <div class="widget">
+                    <?php $this->get_advertisement(2); ?>                    
+                </div>
+                <!-- FB Like Box -->
+                <div class="widget">
+                    <?php
+                    $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
+                        'likebox' => array(
+                            'url' => 'https://www.facebook.com/mujibsenanews',
+                            'header' => 'true',
+                            'width' => '260',
+                            'height' => '400',
+                            'layout' => 'light',
+                            'show_post' => 'false',
+                            'show_faces' => 'true',
+                            'show_border' => 'true',
+                        )
+                    ));
+                    ?>                    
+                </div>
                 <!-- RECENT,POPULAR,COMMENTS -->
                 <div class="widget">
                     <!-- TABS -->
@@ -35,28 +55,7 @@
                         </div>
                     </div>
                     <!-- /TABS -->
-                </div>
-                <!-- Advertisement -->
-                <div class="widget">
-                    <?php $this->get_advertisement(2); ?>                    
-                </div>
-                <!-- FB Like Box -->
-                <div class="widget">
-                    <?php
-                    $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
-                        'likebox' => array(
-                            'url' => 'https://www.facebook.com/mujibsenanews',
-                            'header' => 'true',
-                            'width' => '260',
-                            'height' => '400',
-                            'layout' => 'light',
-                            'show_post' => 'false',
-                            'show_faces' => 'true',
-                            'show_border' => 'true',
-                        )
-                    ));
-                    ?>                    
-                </div>
+                </div>                
             </div>
             <!-- /BLOG SIDEBAR -->
         </div>

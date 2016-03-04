@@ -2,9 +2,17 @@
 <!-- CONTENT -->
 <section>
     <div class="container">
+        <div class="row alert alert-success">
+            <div class="col-md-2">
+                <h4><?php echo Title::get_title(2); ?></h4>
+            </div>
+            <div class="col-md-10">
+                <marquee behavior="scroll" onmouseover="this.stop()" onmouseout="this.start()"><?php $this->get_marquee_news(); ?></marquee>
+            </div>
+        </div>
         <div id="blog" class="row">
             <!-- BLOG ARTICLE LIST -->
-            <div class="col-md-9 col-sm-9">
+            <div class="col-md-9 col-sm-9">                
                 <?php echo $content; ?>
             </div>
             <!-- /BLOG ARTICLE LIST -->
