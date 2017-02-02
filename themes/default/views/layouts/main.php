@@ -82,7 +82,9 @@
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(7), array('news/index', 'id' => 7), array('class' => '')) . '</li>'; ?>
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(8), array('news/index', 'id' => 8), array('class' => '')) . '</li>'; ?>
                                     <?php echo '<li class="mega-menu">' . CHtml::link(ContentCategory::getCategoryName(9), array('news/index', 'id' => 9), array('class' => '')) . '</li>'; ?>
-                                    <?php echo '<li class="mega-menu">' . CHtml::link(Content::get_title(1), array('content/view', 'id' => 1), array('class' => '')) . '</li>'; ?>                               
+                                    <?php echo '<li class="mega-menu">' . CHtml::link(Content::get_title(1), array('content/view', 'id' => 1), array('class' => '')) . '</li>'; ?>                                     
+                                    <?php echo '<li class="mega-menu">' . CHtml::link(Title::get_title(6), array('youtube/index'), array('class' => '')) . '</li>'; ?> 
+                                    <?php echo '<li class="mega-menu">' . CHtml::link(Title::get_title(7), array('gallery/index', 'id' => 3), array('class' => '')) . '</li>'; ?> 
                                 </ul>
                             </nav>
                         </div>
@@ -132,7 +134,6 @@
                             <p><?php echo Content::get_introtext(3989); ?></p>
                         </div>
                         <!-- /col #3 -->
-
                         <!-- col #4 -->
                         <div class="spaced col-md-4 col-sm-5">
                             <h4><?php echo Content::get_title(3990); ?></h4>

@@ -17,7 +17,24 @@
             </div>
             <!-- /BLOG ARTICLE LIST -->
             <!-- BLOG SIDEBAR -->
-            <div class="col-md-3 col-sm-3">                
+            <div class="col-md-3 col-sm-3"> 
+                <!-- FB Like Box -->
+                <div class="widget">
+                    <?php
+                    $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
+                        'likebox' => array(
+                            'url' => 'https://www.facebook.com/mujibsenanews',
+                            'header' => 'true',
+                            'width' => '260',
+                            'height' => '400',
+                            'layout' => 'light',
+                            'show_post' => 'false',
+                            'show_faces' => 'true',
+                            'show_border' => 'true',
+                        )
+                    ));
+                    ?>                    
+                </div>
                 <!-- Video -->
                 <div class="widget">
                     <iframe width="265" height="215" src="//www.youtube.com/embed/<?php echo $this->get_youtube_video(); ?>" frameborder="0" allowfullscreen></iframe>                
@@ -52,24 +69,7 @@
                 <!-- Advertisement -->
                 <div class="widget">
                     <?php $this->get_advertisement(1); ?>                    
-                </div>
-                <!-- FB Like Box -->
-                <div class="widget">
-                    <?php
-                    $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
-                        'likebox' => array(
-                            'url' => 'https://www.facebook.com/mujibsenanews',
-                            'header' => 'true',
-                            'width' => '260',
-                            'height' => '400',
-                            'layout' => 'light',
-                            'show_post' => 'false',
-                            'show_faces' => 'true',
-                            'show_border' => 'true',
-                        )
-                    ));
-                    ?>                    
-                </div>
+                </div>                
             </div>
             <!-- /BLOG SIDEBAR -->
         </div>
