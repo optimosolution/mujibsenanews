@@ -119,7 +119,7 @@ class GalleryController extends Controller {
         $dataProvider = new CActiveDataProvider('Banner', array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 18,
+                'pageSize' => 24,
             ),
         ));
         $criteria->order = 'name';
