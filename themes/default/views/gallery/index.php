@@ -28,3 +28,6 @@ $this->widget('zii.widgets.CListView', array(
     ),
 ));
 ?>
+<div class="col-md-12 col-sm-12">
+    <?php $this->get_advertisement_adsense(6); ?> 
+</div>

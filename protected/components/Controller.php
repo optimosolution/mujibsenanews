@@ -135,6 +135,21 @@ class Controller extends CController {
         }
     }
 
+    public function get_advertisement_adsense($catid) {
+        $array = Yii::app()->db->createCommand()
+                ->select('description')
+                ->from('{{banner}}')
+                ->where('published=1 AND catid=' . $catid)
+                ->order('ordering ASC, created_on DESC')
+                ->queryAll();
+
+        foreach ($array as $key => $values) {
+            echo '<div style="margin:2px 0px;">';
+            echo $values['description'];
+            echo '</div>';
+        }
+    }
+
     public function get_youtube_video() {
         $value = Yii::app()->db->createCommand()
                 ->select('youtube_id')

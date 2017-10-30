@@ -14,6 +14,9 @@
                 <div class="widget">
                     <?php $this->get_advertisement(2); ?>                    
                 </div>
+                <div class="widget">
+                    <?php $this->get_advertisement_adsense(6); ?>                    
+                </div>
                 <!-- FB Like Box -->
                 <div class="widget">
                     <?php

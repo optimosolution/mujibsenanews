@@ -39,6 +39,9 @@
                 <div class="widget">
                     <iframe width="265" height="215" src="//www.youtube.com/embed/<?php echo $this->get_youtube_video(); ?>" frameborder="0" allowfullscreen></iframe>                
                 </div>
+                <div class="widget">
+                    <?php $this->get_advertisement_adsense(6); ?>                    
+                </div>
                 <!-- RECENT,POPULAR,COMMENTS -->
                 <?php /*
                   <div class="widget">
